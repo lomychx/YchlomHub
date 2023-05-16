@@ -1112,11 +1112,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 	LoadingFrame.Version.TextTransparency = 1
 	LoadingFrame.Title.Text = Settings.LoadingTitle or "Arrayfield Interface Suite"
 	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "by Sirius | Meta"
-
 	if Settings.LoadingTitle ~= "Arrayfield Interface Suite" then
-		LoadingFrame.Version.Text = "YchlomHub | Arrayfield UI"
+		LoadingFrame.Version.Text = "Arrayfield UI"
 	end
-
 	Topbar.Visible = false
 	Elements.Visible = false
 	LoadingFrame.Visible = true
@@ -1267,11 +1265,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			end)
 			KeyUI.Main.Input.InputBox.FocusLost:Connect(function(EnterPressed)
 				if not EnterPressed then return end
-
-				local res = game:HttpGet("http://cyberunluckyoolanguage.lomychx.repl.co/auth?key="..KeyMain.Input.InputBox.Text.."&roid=123")
-				local body = HttpService:JSONDecode(res)
-
-				if body.success then
+				if KeyMain.Input.InputBox.Text == Settings.KeySettings.Key then
 					TweenService:Create(KeyMain, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundTransparency = 1}):Play()
 					TweenService:Create(KeyMain, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 467, 0, 175)}):Play()
 					TweenService:Create(KeyMain.EShadow, TweenInfo.new(0.5, Enum.EasingStyle.Quint), {ImageTransparency = 1}):Play()
@@ -1318,12 +1312,8 @@ function RayfieldLibrary:CreateWindow(Settings)
 						game.Players.LocalPlayer:Kick("No Attempts Remaining")
 						game:Shutdown()
 					end
-
 					KeyMain.Input.InputBox.Text = ""
-
-					if body.message == "Wrong key" then AttemptsRemaining = AttemptsRemaining - 1
-					else RayfieldLibrary:Notify({Title = "YchlomHub", Content = body.message})
-
+					AttemptsRemaining = AttemptsRemaining - 1
 					TweenService:Create(KeyMain, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {Size = UDim2.new(0, 467, 0, 175)}):Play()
 					TweenService:Create(KeyMain, TweenInfo.new(0.4, Enum.EasingStyle.Elastic), {Position = UDim2.new(0.495,0,0.5,0)}):Play()
 					wait(0.1)
