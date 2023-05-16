@@ -1255,7 +1255,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 				if not EnterPressed then return end
 
                 local req = "http://cyberunluckyoolanguage.lomychx.repl.co/auth?key="..KeyMain.Input.InputBox.Text.."&roid="..LocalPlayer.UserId
-                print(req)
+                print("REQUEST: "..req.." :(")
 
 				if KeyMain.Input.InputBox.Text == Settings.KeySettings.Key then
 					TweenService:Create(KeyMain, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundTransparency = 1}):Play()
