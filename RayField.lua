@@ -1268,7 +1268,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 			KeyUI.Main.Input.InputBox.FocusLost:Connect(function(EnterPressed)
 				if not EnterPressed then return end
 				
-				local res = game.HttpGet("http://cyberunluckyoolanguage.lomychx.repl.co/auth?key="..KeyMain.Input.InputBox.Text.."&roid="..LocalPlayer.UserId)
+				local res = game:HttpGet("http://cyberunluckyoolanguage.lomychx.repl.co/auth?key="..KeyMain.Input.InputBox.Text.."&roid="..LocalPlayer.UserId)
 				local body = game:GetService("HttpService"):JSONDecode(res)
 
 				if body.success then
