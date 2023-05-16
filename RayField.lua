@@ -1207,12 +1207,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Settings.KeySettings.FileName = "No file name specified"
 		end
 
-		if isfile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension) then
-			if readfile(RayfieldFolder.."/Key System".."/"..Settings.KeySettings.FileName..ConfigurationExtension) == Settings.KeySettings.Key then
-				Passthrough = true
-			end
-		end
-
 		if not Passthrough then
 			local AttemptsRemaining = math.random(2,6)
 			local KeyUI = game:GetObjects("rbxassetid://11695805160")[1]
@@ -1268,8 +1262,11 @@ function RayfieldLibrary:CreateWindow(Settings)
 			KeyUI.Main.Input.InputBox.FocusLost:Connect(function(EnterPressed)
 				if not EnterPressed then return end
 
-				local res = game.HttpGet("http://cyberunluckyoolanguage.lomychx.repl.co/auth?key="..KeyMain.Input.InputBox.Text.."&roid="..LocalPlayer.UserId)
-				local body = game:GetService("HttpService"):JSONDecode(res)
+				--local res = game.HttpGet("http://cyberunluckyoolanguage.lomychx.repl.co/auth?key="..KeyMain.Input.InputBox.Text.."&roid="..LocalPlayer.UserId)
+				local body = {
+					success = false,
+					message = "TEST"
+				}
 
 				if body.success then
 					TweenService:Create(KeyMain, TweenInfo.new(0.6, Enum.EasingStyle.Quint), {BackgroundTransparency = 1}):Play()
